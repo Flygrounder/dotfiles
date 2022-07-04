@@ -61,13 +61,14 @@ myManageHook =
     ]
 
 myKeys =
-  [ ((myModMask, xK_d), spawn "dmenu_run"),
+  [ ((myModMask, xK_d), spawn "rofi -show run"),
     ((myModMask .|. shiftMask, xK_f), spawn "firefox"),
     ((myModMask, xK_q), kill),
     ((myModMask, xK_Return), spawn "kitty"),
     ((myModMask, xK_e), spawn "emacs"),
     ((myModMask, xK_b), sendMessage ToggleStruts),
-    ((myModMask, xK_f), sendMessage ToggleLayout)
+    ((myModMask, xK_f), sendMessage ToggleLayout),
+    ((myModMask .|. shiftMask, xK_l), spawn "betterlockscreen -l ~/.local/share/wallpaper.png -- --ring-color '#ECEFF4' --keyhl-color '#5e81ac' --insidewrong-color '#BF616A'")
   ]
 
 myKeysP = [

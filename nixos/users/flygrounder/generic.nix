@@ -4,20 +4,22 @@ let dotfiles = ../../../dotfiles;
 {
   home = {
     packages = with pkgs; [
+      (haskell.packages.ghc922.ghcWithPackages (p: [p.xmonad p.xmonad-contrib]))
+      betterlockscreen
       bpytop
-      dmenu
+      direnv
       feh
       firefox
       font-awesome_5
       gopls
-      nodePackages.pyright
-      python3
-      trayer
-      (haskell.packages.ghc922.ghcWithPackages (p: [p.xmonad p.xmonad-contrib]))
       haskell-language-server
       neofetch
       nerdfonts
+      nodePackages.pyright
+      python3
       roboto
+      shellcheck
+      trayer
       xdotool
       yandex-disk
     ];
@@ -67,6 +69,10 @@ let dotfiles = ../../../dotfiles;
       };
       extraConfig = (builtins.readFile (dotfiles + /kitty/nord.conf));
     };
+    rofi = {
+      enable = true;
+      theme = dotfiles + /rofi/nord.rasi;
+    };
     fish = {
       enable = true;
       shellAliases = {
@@ -75,7 +81,9 @@ let dotfiles = ../../../dotfiles;
       functions = {
         fish_greeting = "";
       };
-      interactiveShellInit = "fish_vi_key_bindings";
+      interactiveShellInit = ''fish_vi_key_bindings
+direnv hook fish | source
+'';
     };
     starship = {
       enable = true;
@@ -120,6 +128,22 @@ Config
     };
   };
   services = {
+    screen-locker.enable = true;
+    betterlockscreen = {
+      enable = true;
+      arguments = [
+        "-l"
+        "~/.local/share/wallpaper.png"
+        "--"
+        "--ring-color"
+        "#ECEFF4"
+        "--keyhl-color"
+        "#5e81ac"
+        "--insidewrong-color"
+        "#BF616A"
+      ];
+      inactiveInterval = 10;
+    };
     network-manager-applet.enable = true;
     picom.enable = true;
   };
