@@ -10,7 +10,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   time.timeZone = "Europe/Moscow";
 
-  networking.hostName = "desktop";
+  networking = {
+    hostName = "desktop";
+    networkmanager.enable = true;
+  };
 
   security.sudo.wheelNeedsPassword = false;
   services.xserver = {

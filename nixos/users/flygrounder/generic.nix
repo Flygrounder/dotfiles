@@ -4,13 +4,21 @@ let dotfiles = ../../../dotfiles;
 {
   home = {
     packages = with pkgs; [
+      bpytop
       dmenu
       feh
       firefox
+      font-awesome_5
+      gopls
+      nodePackages.pyright
+      python3
+      trayer
       (haskell.packages.ghc922.ghcWithPackages (p: [p.xmonad p.xmonad-contrib]))
       haskell-language-server
       neofetch
       nerdfonts
+      roboto
+      xdotool
       yandex-disk
     ];
     username = "flygrounder";
@@ -21,6 +29,16 @@ let dotfiles = ../../../dotfiles;
     wallpaper = {
       source = dotfiles + /wallpapers/nixos.png;
       target = "wallpaper.png";
+    };
+    volume = {
+      source = dotfiles + /scripts/volume.py;
+      target = "scripts/volume.py";
+      executable = true;
+    };
+    trayerPadding = {
+      source = dotfiles + /scripts/trayer-padding-icon.sh;
+      target = "scripts/trayer-padding-icon.sh";
+      executable = true;
     };
   };
   xsession.windowManager.xmonad = {
@@ -40,7 +58,8 @@ let dotfiles = ../../../dotfiles;
     kitty = {
       enable = true;
       settings = {
-        confirm_os_window_close = 0;  
+        confirm_os_window_close = 0;
+        window_padding_width = 4;
       };
       font = {
         name = "FiraCode Nerd Font";
@@ -66,5 +85,42 @@ let dotfiles = ../../../dotfiles;
       enable = true;
       doomPrivateDir = dotfiles + /doom.d;
     };
+    xmobar = {
+      enable = true;
+      extraConfig = ''
+Config
+  { font        = "xft:Roboto-12:bold"
+  , additionalFonts = [
+      "xft:FiraCode Nerd Font-16:regular"
+      ,"xft:Font Awesome 5 Free Solid-12:regular"
+      ,"xft:Font Awesome 5 Brands-12:regular"
+    ]
+  , bgColor     = "#3B4252"
+  , fgColor     = "#ECEFF4"
+  , position    = TopSize L 100 30
+  , textOffset  = 22
+  , textOffsets = [
+      22
+      ,22
+      ,22
+    ]
+  , commands    =
+      [
+       Run UnsafeXMonadLog
+       ,Run Date "%H:%M %d.%m.%Y" "date" 10
+       ,Run Kbd [("us", "US"), ("ru", "RU")]
+       ,Run Volume "default" "Master" ["-t", "<volume>%"] 10
+       ,Run Com "/home/flygrounder/.local/share/scripts/volume.py" [] "volume" 10
+       ,Run Com "/home/flygrounder/.local/share/scripts/trayer-padding-icon.sh" [] "trayerpad" 10
+      ]
+  , sepChar     = "%"
+  , alignSep    = "}{"
+  , template    = " <fn=1>  </fn> %UnsafeXMonadLog% }{ %volume%    <fn=2></fn> %kbd%    <fn=2></fn> %date%    %trayerpad%"
+  }'';
+    };
+  };
+  services = {
+    network-manager-applet.enable = true;
+    picom.enable = true;
   };
 }
