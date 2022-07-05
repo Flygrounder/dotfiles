@@ -10,17 +10,17 @@ import XMonad.Hooks.StatusBar (statusBarProp, withSB)
 import XMonad.Layout.Gaps
 import XMonad.Layout.NoBorders (smartBorders)
 import XMonad.Layout.Renamed (Rename (Replace), renamed)
+import XMonad.Layout.Simplest (Simplest (Simplest))
 import XMonad.Layout.Spacing (smartSpacing)
-import XMonad.Layout.SubLayouts (GroupMsg (MergeAll, UnMerge), onGroup, pullGroup, subTabbed, subLayout)
-import XMonad.Layout.Tabbed (addTabs, shrinkText, Shrinker (shrinkIt))
+import XMonad.Layout.SubLayouts (GroupMsg (MergeAll, UnMerge), onGroup, pullGroup, subLayout, subTabbed)
+import XMonad.Layout.Tabbed
+import XMonad.Layout.Tabbed (Shrinker (shrinkIt), addTabs, shrinkText)
 import XMonad.Layout.ToggleLayouts (ToggleLayout (ToggleLayout), toggleLayouts)
+import XMonad.Layout.WindowNavigation (windowNavigation)
 import XMonad.StackSet as W
 import XMonad.Util.ClickableWorkspaces (clickablePP)
 import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
-import XMonad.Layout.WindowNavigation (windowNavigation)
-import XMonad.Layout.Simplest (Simplest(Simplest))
-import XMonad.Layout.Tabbed
 
 main =
   xmonad . withSB mySB . ewmh . docks $
@@ -66,8 +66,19 @@ getIcon w =
 
 myManageHook =
   composeAll
-    [ (fmap not isDialog) --> doF W.swapDown
+    [ (fmap not isDialog) --> doF W.swapDown,
+      (className =? "Emacs") --> shiftFocus "dev",
+      (className =? "kitty") --> shiftFocus "dev",
+      (className =? "firefox") --> shiftFocus "www",
+      (className =? "Pcmanfm") --> shiftFocus "fs",
+      (className =? "ranger") --> shiftFocus "fs",
+      (className =? "Gimp") --> shiftFocus "doc",
+      (className =? "Soffice") --> shiftFocus "doc",
+      (className =? "TelegramDesktop") --> shiftFocus "chat",
+      (className =? "VirtualBox Manager") --> shiftFocus "vbox"
     ]
+  where
+    shiftFocus ws = doShift ws <+> (doF $ greedyView ws)
 
 myKeys =
   [ ((myModMask, xK_d), spawn "rofi -show run"),
@@ -75,6 +86,8 @@ myKeys =
     ((myModMask, xK_q), kill),
     ((myModMask, xK_Return), spawn "kitty"),
     ((myModMask, xK_e), spawn "emacs"),
+    ((myModMask, xK_p), spawn "kitty --class ranger ranger"),
+    ((myModMask .|. shiftMask, xK_p), spawn "pcmanfm"),
     ((myModMask, xK_b), sendMessage ToggleStruts),
     ((myModMask, xK_f), sendMessage ToggleLayout),
     ((myModMask .|. shiftMask, xK_l), spawn "betterlockscreen -l ~/.local/share/wallpaper.png -- --ring-color '#ECEFF4' --keyhl-color '#5e81ac' --insidewrong-color '#BF616A'"),
@@ -106,15 +119,16 @@ myLayoutHook = windowNavigation $ avoidStruts (toggleLayouts myFull myTall)
   where
     myFull = renamed [Replace "Full"] $ smartBorders $ Full
     myTall = renamed [Replace "Tall"] $ addTabs shrinkText myTabTheme $ subLayout [] (Simplest) $ smartSpacing 5 $ smartBorders $ Tall 1 (3 / 100) (1 / 2)
-    myTabTheme = def {
-      activeBorderWidth = 0,
-      inactiveBorderWidth = 0,
-      activeColor = nord2,
-      inactiveColor = nord1,
-      activeTextColor = nord6,
-      inactiveTextColor = nord4,
-      fontName = "xft:Roboto-12:regular"
-    }
+    myTabTheme =
+      def
+        { activeBorderWidth = 0,
+          inactiveBorderWidth = 0,
+          activeColor = nord2,
+          inactiveColor = nord1,
+          activeTextColor = nord6,
+          inactiveTextColor = nord4,
+          fontName = "xft:Roboto-12:regular"
+        }
 
 -- Nord theme
 -- Polar Night

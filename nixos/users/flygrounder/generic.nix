@@ -18,19 +18,22 @@ let dotfiles = ../../../dotfiles;
       feh
       firefox
       font-awesome_5
+      gimp
       go
       gopls
       haskell-language-server
+      libreoffice
       neofetch
       nerdfonts
-      nodejs
       nodePackages.pyright
       nodePackages.typescript-language-server
+      nodejs
       pcmanfm
       python3
       ranger
       roboto
       shellcheck
+      tdesktop
       trayer
       xdotool
       yandex-disk
@@ -151,6 +154,7 @@ Config
     };
   };
   services = {
+    udiskie.enable = true;
     screen-locker.enable = true;
     betterlockscreen = {
       enable = true;

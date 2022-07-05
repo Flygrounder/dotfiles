@@ -6,6 +6,11 @@
       ./hardware-configuration.nix
     ];
 
+  virtualisation = {
+    docker.enable = true;
+    virtualbox.host.enable = true;
+  };
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   time.timeZone = "Europe/Moscow";
@@ -36,7 +41,7 @@
 
   users.users.flygrounder = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "docker" "vboxusers" ];
     shell = pkgs.fish;
   };
 
