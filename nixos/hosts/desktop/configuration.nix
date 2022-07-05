@@ -18,7 +18,14 @@
   security.sudo.wheelNeedsPassword = false;
   services.xserver = {
     enable = true;
-    displayManager.lightdm.enable = true;
+    displayManager.lightdm = {
+      enable = true;
+      greeters.gtk.cursorTheme = {
+        package = pkgs.capitaine-cursors;
+        name = "capitaine-cursors-white";
+        size = 32;
+      };
+    };
     windowManager.xmonad.enable = true;
   };
 

@@ -1,20 +1,26 @@
+import Data.List (elemIndex)
+import Data.Map as M
+import Data.Maybe (fromJust, fromMaybe)
 import XMonad
+import XMonad.Hooks.DynamicLog (PP (ppCurrent, ppHidden, ppHiddenNoWindows, ppSep), wrap, xmobarColor)
 import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.ManageHelpers (isDialog)
+import XMonad.Hooks.ManageHelpers (doFullFloat, isDialog, isFullscreen)
 import XMonad.Hooks.StatusBar (statusBarProp, withSB)
 import XMonad.Layout.Gaps
+import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Layout.Renamed (Rename (Replace), renamed)
 import XMonad.Layout.Spacing (smartSpacing)
+import XMonad.Layout.SubLayouts (GroupMsg (MergeAll, UnMerge), onGroup, pullGroup, subTabbed, subLayout)
+import XMonad.Layout.Tabbed (addTabs, shrinkText, Shrinker (shrinkIt))
+import XMonad.Layout.ToggleLayouts (ToggleLayout (ToggleLayout), toggleLayouts)
 import XMonad.StackSet as W
 import XMonad.Util.ClickableWorkspaces (clickablePP)
 import XMonad.Util.EZConfig
 import XMonad.Util.SpawnOnce
-import Data.Map as M
-import Data.List (elemIndex)
-import Data.Maybe (fromJust, fromMaybe)
-import XMonad.Hooks.DynamicLog (PP(ppSep, ppCurrent, ppHidden, ppHiddenNoWindows), xmobarColor, wrap)
-import XMonad.Layout.ToggleLayouts (toggleLayouts, ToggleLayout (ToggleLayout))
-import XMonad.Layout.Renamed (Rename(Replace), renamed)
+import XMonad.Layout.WindowNavigation (windowNavigation)
+import XMonad.Layout.Simplest (Simplest(Simplest))
+import XMonad.Layout.Tabbed
 
 main =
   xmonad . withSB mySB . ewmh . docks $
@@ -33,27 +39,30 @@ main =
       `additionalKeysP` myKeysP
 
 mySB = statusBarProp "xmobar" (pure myPP)
-myPP = def {
-  ppCurrent = wrapWithColor nord6 . getIcon
-  ,ppHidden = wrapWithColor "#97a1b4" . getIcon
-  ,ppHiddenNoWindows = wrapWithColor nord3 . getIcon
-  ,ppSep = " | "
-}
+
+myPP =
+  def
+    { ppCurrent = wrapWithColor nord6 . getIcon,
+      ppHidden = wrapWithColor "#97a1b4" . getIcon,
+      ppHiddenNoWindows = wrapWithColor nord3 . getIcon,
+      ppSep = " | "
+    }
 
 wrapWithColor color text = "<fc=" ++ color ++ ">" ++ text ++ "</fc>"
 
-myWorkspaces = [ "dev", "www", "fs", "doc", "chat", "vbox" ]
-workspaceIcons = [ "\xf121", "\xe007", "\xf07b", "\xf15b", "\xf086", "\xf108" ]
+myWorkspaces = ["dev", "www", "fs", "doc", "chat", "vbox"]
+
+workspaceIcons = ["\xf121", "\xe007", "\xf07b", "\xf15b", "\xf086", "\xf108"]
+
 workspaceIndex w = fromMaybe 0 $ elemIndex w myWorkspaces
 
 getIcon :: String -> String
-getIcon w = let
-  icon = fromMaybe "" (M.lookup w (M.fromList (zip myWorkspaces workspaceIcons)))
-  clickableIcon = "<action=`xdotool key super+" ++ show ((workspaceIndex w) + 1) ++ "`>" ++ icon ++ "</action>"
-  in
-  case w of
-    "www" -> wrap " <fn=3>" "</fn> " clickableIcon
-    _ -> wrap " <fn=2>" "</fn> " clickableIcon
+getIcon w =
+  let icon = fromMaybe "" (M.lookup w (M.fromList (zip myWorkspaces workspaceIcons)))
+      clickableIcon = "<action=`xdotool key super+" ++ show ((workspaceIndex w) + 1) ++ "`>" ++ icon ++ "</action>"
+   in case w of
+        "www" -> wrap " <fn=3>" "</fn> " clickableIcon
+        _ -> wrap " <fn=2>" "</fn> " clickableIcon
 
 myManageHook =
   composeAll
@@ -68,14 +77,22 @@ myKeys =
     ((myModMask, xK_e), spawn "emacs"),
     ((myModMask, xK_b), sendMessage ToggleStruts),
     ((myModMask, xK_f), sendMessage ToggleLayout),
-    ((myModMask .|. shiftMask, xK_l), spawn "betterlockscreen -l ~/.local/share/wallpaper.png -- --ring-color '#ECEFF4' --keyhl-color '#5e81ac' --insidewrong-color '#BF616A'")
+    ((myModMask .|. shiftMask, xK_l), spawn "betterlockscreen -l ~/.local/share/wallpaper.png -- --ring-color '#ECEFF4' --keyhl-color '#5e81ac' --insidewrong-color '#BF616A'"),
+    ((myModMask .|. controlMask, xK_h), sendMessage $ pullGroup L),
+    ((myModMask .|. controlMask, xK_l), sendMessage $ pullGroup R),
+    ((myModMask .|. controlMask, xK_k), sendMessage $ pullGroup U),
+    ((myModMask .|. controlMask, xK_j), sendMessage $ pullGroup D),
+    ((myModMask .|. controlMask, xK_m), withFocused (sendMessage . MergeAll)),
+    ((myModMask .|. controlMask, xK_u), withFocused (sendMessage . UnMerge)),
+    ((myModMask .|. controlMask, xK_period), onGroup W.focusUp'),
+    ((myModMask .|. controlMask, xK_comma), onGroup W.focusDown')
   ]
 
-myKeysP = [
-  ("<XF86AudioMute>", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle")
-  ,("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
-  ,("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
-          ]
+myKeysP =
+  [ ("<XF86AudioMute>", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle"),
+    ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%"),
+    ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
+  ]
 
 myModMask = mod4Mask
 
@@ -85,9 +102,19 @@ myStartupHook = do
   spawnOnce "yandex-disk start"
   spawnOnce "trayer --edge top --align right --height 30 --transparent true --alpha 0 --widthtype request --tint 0x3B4252"
 
-myLayoutHook = avoidStruts (toggleLayouts myFull myTall)
-  where myFull = renamed [Replace "Full"] Full
-        myTall = renamed [Replace "Tall"] $ smartSpacing 5 $ Tall 1 (3 / 100) (1 / 2)
+myLayoutHook = windowNavigation $ avoidStruts (toggleLayouts myFull myTall)
+  where
+    myFull = renamed [Replace "Full"] $ smartBorders $ Full
+    myTall = renamed [Replace "Tall"] $ addTabs shrinkText myTabTheme $ subLayout [] (Simplest) $ smartSpacing 5 $ smartBorders $ Tall 1 (3 / 100) (1 / 2)
+    myTabTheme = def {
+      activeBorderWidth = 0,
+      inactiveBorderWidth = 0,
+      activeColor = nord2,
+      inactiveColor = nord1,
+      activeTextColor = nord6,
+      inactiveTextColor = nord4,
+      fontName = "xft:Roboto-12:regular"
+    }
 
 -- Nord theme
 -- Polar Night

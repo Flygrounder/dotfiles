@@ -3,20 +3,32 @@ let dotfiles = ../../../dotfiles;
   in
 {
   home = {
+    pointerCursor = {
+      package = pkgs.capitaine-cursors;
+      name = "capitaine-cursors-white";
+      size = 32;
+      x11.enable = true;
+    };
     packages = with pkgs; [
       (haskell.packages.ghc922.ghcWithPackages (p: [p.xmonad p.xmonad-contrib]))
       betterlockscreen
       bpytop
+      dconf
       direnv
       feh
       firefox
       font-awesome_5
+      go
       gopls
       haskell-language-server
       neofetch
       nerdfonts
+      nodejs
       nodePackages.pyright
+      nodePackages.typescript-language-server
+      pcmanfm
       python3
+      ranger
       roboto
       shellcheck
       trayer
@@ -26,6 +38,17 @@ let dotfiles = ../../../dotfiles;
     username = "flygrounder";
     homeDirectory = "/home/flygrounder";
     stateVersion = "22.05";
+  };
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.nordic;
+      name = "Nordic";
+    };
+    iconTheme = {
+      package = pkgs.zafiro-icons;
+      name = "Zafiro-icons";
+    };
   };
   xdg.dataFile = {
     wallpaper = {
@@ -146,5 +169,27 @@ Config
     };
     network-manager-applet.enable = true;
     picom.enable = true;
+    dunst = {
+      enable = true;
+      settings = {
+        global = {
+          frame_width = 0;
+          font = "Roboto 12";
+          separator_height = 10;
+          separator_color = "#00000000";
+          padding = 10;
+          foreground = "#2E3440";
+        };
+        urgency_low = {
+          background = "#A3BE8C";
+        };
+        urgency_normal = {
+          background = "#EBCB8B";
+        };
+        urgency_critical = {
+          background = "#BF616A";
+        };
+      };
+    };
   };
 }
