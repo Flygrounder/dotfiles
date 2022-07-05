@@ -72,6 +72,7 @@ myManageHook =
       (className =? "firefox") --> shiftFocus "www",
       (className =? "Pcmanfm") --> shiftFocus "fs",
       (className =? "lf") --> shiftFocus "fs",
+      (className =? "Zathura") --> shiftFocus "doc",
       (className =? "Gimp") --> shiftFocus "doc",
       (className =? "Soffice") --> shiftFocus "doc",
       (className =? "TelegramDesktop") --> shiftFocus "chat",

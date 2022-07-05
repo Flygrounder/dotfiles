@@ -13,6 +13,7 @@ let dotfiles = ../../../dotfiles;
       (haskell.packages.ghc922.ghcWithPackages (p: [p.xmonad p.xmonad-contrib]))
       betterlockscreen
       bpytop
+      cmatrix
       dconf
       direnv
       feh
@@ -34,11 +35,13 @@ let dotfiles = ../../../dotfiles;
       pcmanfm
       python3
       roboto
+      scrot
       shellcheck
       tdesktop
       trayer
       ueberzug
       vimiv-qt
+      xclip
       xdotool
       yandex-disk
       zsh
