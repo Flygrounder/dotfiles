@@ -13,23 +13,38 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nix-doom-emacs, ... }: 
-  {
-    nixosConfigurations = {
-      desktop = nixpkgs.lib.nixosSystem {
-	system = "x86_64-linux";
-        modules = [
-          ./nixos/hosts/desktop/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.flygrounder = nixpkgs.lib.mkMerge [
-              nix-doom-emacs.hmModule
-              (import ./nixos/users/flygrounder/desktop.nix)
-            ];
-          }
-        ];
+    {
+      nixosConfigurations = {
+        laptop = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./nixos/hosts/laptop/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.flygrounder = nixpkgs.lib.mkMerge [
+                nix-doom-emacs.hmModule
+                (import ./nixos/users/flygrounder/laptop.nix)
+              ];
+            }
+          ];
+        };
+        desktop = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./nixos/hosts/desktop/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.flygrounder = nixpkgs.lib.mkMerge [
+                nix-doom-emacs.hmModule
+                (import ./nixos/users/flygrounder/desktop.nix)
+              ];
+            }
+          ];
+        };
       };
-    }; 
-  };
+    };
 }

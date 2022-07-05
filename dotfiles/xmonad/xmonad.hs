@@ -105,7 +105,10 @@ myKeys =
 myKeysP =
   [ ("<XF86AudioMute>", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle"),
     ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%"),
-    ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
+    ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%"),
+    ("<XF86MonBrightnessUp>", spawn "light -A 10"),
+    ("<XF86MonBrightnessDown>", spawn "light -U 10"),
+    ("<Print>", spawn "~/.local/share/scripts/screenshot.sh")
   ]
 
 myModMask = mod4Mask

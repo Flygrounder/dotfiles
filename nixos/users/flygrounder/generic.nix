@@ -1,4 +1,4 @@
-{ pkgs, ...}: 
+{ xmobarTemplate }: { pkgs, ...}:
 let dotfiles = ../../../dotfiles;
   in
 {
@@ -11,6 +11,7 @@ let dotfiles = ../../../dotfiles;
     };
     packages = with pkgs; [
       (haskell.packages.ghc922.ghcWithPackages (p: [p.xmonad p.xmonad-contrib]))
+      acpi
       betterlockscreen
       bpytop
       cmatrix
@@ -34,6 +35,7 @@ let dotfiles = ../../../dotfiles;
       nodejs
       pcmanfm
       python3
+      ripgrep
       roboto
       scrot
       shellcheck
@@ -202,11 +204,13 @@ Config
        ,Run Kbd [("us", "US"), ("ru", "RU")]
        ,Run Volume "default" "Master" ["-t", "<volume>%"] 10
        ,Run Com "/home/flygrounder/.local/share/scripts/volume.py" [] "volume" 10
+       ,Run Com "/home/flygrounder/.local/share/scripts/battery.py" [] "battery" 300
+       ,Run Com "/home/flygrounder/.local/share/scripts/brightness.py" [] "brightness" 10
        ,Run Com "/home/flygrounder/.local/share/scripts/trayer-padding-icon.sh" [] "trayerpad" 10
       ]
   , sepChar     = "%"
   , alignSep    = "}{"
-  , template    = " <fn=1>  </fn> %UnsafeXMonadLog% }{ %volume%    <fn=2></fn> %kbd%    <fn=2></fn> %date%    %trayerpad%"
+  , template    = "${xmobarTemplate}"
   }'';
     };
   };
