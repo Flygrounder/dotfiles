@@ -16,11 +16,14 @@ let dotfiles = ../../../dotfiles;
       dconf
       direnv
       feh
+      ffmpeg
       firefox
       font-awesome_5
+      ghostscript
       gimp
       go
       gopls
+      graphicsmagick
       haskell-language-server
       libreoffice
       neofetch
@@ -30,13 +33,15 @@ let dotfiles = ../../../dotfiles;
       nodejs
       pcmanfm
       python3
-      ranger
       roboto
       shellcheck
       tdesktop
       trayer
+      ueberzug
+      vimiv-qt
       xdotool
       yandex-disk
+      zsh
     ];
     username = "flygrounder";
     homeDirectory = "/home/flygrounder";
@@ -53,20 +58,38 @@ let dotfiles = ../../../dotfiles;
       name = "Zafiro-icons";
     };
   };
-  xdg.dataFile = {
-    wallpaper = {
-      source = dotfiles + /wallpapers/nixos.png;
-      target = "wallpaper.png";
+  xdg = {
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "image/png" = ["vimiv.desktop"];
+        "image/gif" = ["vimiv.desktop"];
+        "image/jpeg" = ["vimiv.desktop"];
+        "application/pdf" = ["org.pwmt.zathura.desktop"];
+      };
     };
-    volume = {
-      source = dotfiles + /scripts/volume.py;
-      target = "scripts/volume.py";
-      executable = true;
+    dataFile = {
+      lf-ueberzug = {
+        source = dotfiles + /lf-ueberzug;
+        target = "lf-ueberzug";
+        recursive = true;
+      };
+      wallpaper = {
+        source = dotfiles + /wallpapers/nixos.png;
+        target = "wallpaper.png";
+      };
+      scripts = {
+        source = dotfiles + /scripts;
+        target = "scripts";
+        executable = true;
+        recursive = true;
+      };
     };
-    trayerPadding = {
-      source = dotfiles + /scripts/trayer-padding-icon.sh;
-      target = "scripts/trayer-padding-icon.sh";
-      executable = true;
+    configFile = {
+      vimiv = {
+        source = dotfiles + /vimiv/vimiv.conf;
+        target = "vimiv/vimiv.conf";
+      };
     };
   };
   xsession.windowManager.xmonad = {
@@ -78,6 +101,36 @@ let dotfiles = ../../../dotfiles;
     ];
   };
   programs = {
+    lf = {
+      enable = true;
+    };
+    zathura = {
+      enable = true;
+      options = {
+        default-bg = "#2E3440";
+        default-fg = "#3B4252";
+        statusbar-fg = "#D8DEE9";
+        statusbar-bg = "#434C5E";
+        inputbar-bg = "#2E3440";
+        inputbar-fg = "#8FBCBB";
+        notification-bg = "#2E3440";
+        notification-fg = "#8FBCBB";
+        notification-error-bg = "#2E3440";
+        notification-error-fg = "#BF616A";
+        notification-warning-bg = "#2E3440";
+        notification-warning-fg = "#BF616A";
+        highlight-color = "#EBCB8B";
+        highlight-active-color = "#81A1C1";
+        completion-bg = "#3B4252";
+        completion-fg = "#81A1C1";
+        completion-highlight-fg = "#8FBCBB";
+        completion-highlight-bg = "#81A1C1";
+        recolor-lightcolor = "#2E3440";
+        recolor-darkcolor = "#ECEFF4";
+        recolor = "false";
+        recolor-keephue ="false";
+      };
+    };
     git = {
       enable = true;
       userEmail = "flygrounder@yandex.ru";
@@ -103,6 +156,7 @@ let dotfiles = ../../../dotfiles;
       enable = true;
       shellAliases = {
         rb = "sudo nixos-rebuild --flake /etc/nixos switch";
+        lf = "~/.local/share/lf-ueberzug/lf-ueberzug .";
       };      
       functions = {
         fish_greeting = "";
