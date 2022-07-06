@@ -35,11 +35,6 @@
     shell = pkgs.fish;
   };
 
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-  ];
-
   system.stateVersion = "22.05";
 
   nixpkgs.config.allowUnfree = true;

@@ -3,6 +3,9 @@ let dotfiles = ../../../dotfiles;
   in
 {
   home = {
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
     pointerCursor = {
       package = pkgs.capitaine-cursors;
       name = "capitaine-cursors-white";
@@ -23,7 +26,8 @@ let dotfiles = ../../../dotfiles;
       font-awesome_5
       ghostscript
       gimp
-      go
+      gnumake
+      go_1_18
       gopls
       graphicsmagick
       haskell-language-server
@@ -31,7 +35,6 @@ let dotfiles = ../../../dotfiles;
       neofetch
       nerdfonts
       nodePackages.pyright
-      nodePackages.typescript-language-server
       nodejs
       pcmanfm
       python3
@@ -42,6 +45,7 @@ let dotfiles = ../../../dotfiles;
       tdesktop
       trayer
       ueberzug
+      unzip
       vimiv-qt
       xclip
       xdotool
@@ -106,6 +110,15 @@ let dotfiles = ../../../dotfiles;
     ];
   };
   programs = {
+    neovim = {
+      enable = true;
+      plugins = with pkgs.vimPlugins; [
+        nord-vim
+        vim-airline
+      ];
+      extraConfig = ''
+      colorscheme nord'';
+    };
     lf = {
       enable = true;
     };
@@ -162,12 +175,14 @@ let dotfiles = ../../../dotfiles;
       shellAliases = {
         rb = "sudo nixos-rebuild --flake /etc/nixos switch";
         lf = "~/.local/share/lf-ueberzug/lf-ueberzug .";
+        vim = "nvim";
       };      
       functions = {
         fish_greeting = "";
       };
       interactiveShellInit = ''fish_vi_key_bindings
 direnv hook fish | source
+fish_add_path $HOME/go/bin
 '';
     };
     starship = {
@@ -204,7 +219,7 @@ Config
        ,Run Kbd [("us", "US"), ("ru", "RU")]
        ,Run Volume "default" "Master" ["-t", "<volume>%"] 10
        ,Run Com "/home/flygrounder/.local/share/scripts/volume.py" [] "volume" 10
-       ,Run Com "/home/flygrounder/.local/share/scripts/battery.py" [] "battery" 300
+       ,Run Com "/home/flygrounder/.local/share/scripts/battery.py" [ "format" ] "battery" 300
        ,Run Com "/home/flygrounder/.local/share/scripts/brightness.py" [] "brightness" 10
        ,Run Com "/home/flygrounder/.local/share/scripts/trayer-padding-icon.sh" [] "trayerpad" 10
       ]
