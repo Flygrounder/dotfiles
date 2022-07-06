@@ -16,7 +16,9 @@ let dotfiles = ../../../dotfiles;
       (haskell.packages.ghc922.ghcWithPackages (p: [p.xmonad p.xmonad-contrib]))
       acpi
       betterlockscreen
+      binutils
       bpytop
+      cargo
       cmatrix
       dconf
       direnv
@@ -24,6 +26,7 @@ let dotfiles = ../../../dotfiles;
       ffmpeg
       firefox
       font-awesome_5
+      gcc
       ghostscript
       gimp
       gnumake
@@ -35,11 +38,15 @@ let dotfiles = ../../../dotfiles;
       neofetch
       nerdfonts
       nodePackages.pyright
+      nodePackages.typescript-language-server
       nodejs
+      pandoc
       pcmanfm
       python3
       ripgrep
       roboto
+      rustc
+      rust-analyzer
       scrot
       shellcheck
       tdesktop
@@ -183,6 +190,7 @@ let dotfiles = ../../../dotfiles;
       interactiveShellInit = ''fish_vi_key_bindings
 direnv hook fish | source
 fish_add_path $HOME/go/bin
+fish_add_path $HOME/.cargo/bin
 '';
     };
     starship = {
