@@ -18,7 +18,6 @@ let dotfiles = ../../../dotfiles;
       betterlockscreen
       binutils
       bpytop
-      cargo
       clang-tools
       cmatrix
       dconf
@@ -46,8 +45,7 @@ let dotfiles = ../../../dotfiles;
       python3
       ripgrep
       roboto
-      rustc
-      rust-analyzer
+      rustup
       scrot
       shellcheck
       tdesktop
@@ -192,6 +190,7 @@ let dotfiles = ../../../dotfiles;
 direnv hook fish | source
 fish_add_path $HOME/go/bin
 fish_add_path $HOME/.cargo/bin
+fish_add_path $HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin
 '';
     };
     starship = {
