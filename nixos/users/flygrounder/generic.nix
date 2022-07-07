@@ -19,6 +19,7 @@ let dotfiles = ../../../dotfiles;
       binutils
       bpytop
       cargo
+      clang-tools
       cmatrix
       dconf
       direnv
