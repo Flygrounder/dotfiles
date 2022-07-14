@@ -45,9 +45,11 @@ let dotfiles = ../../../dotfiles;
       python3
       ripgrep
       roboto
+      rust-analyzer
       rustup
       scrot
       shellcheck
+      sqlite
       tdesktop
       trayer
       ueberzug
