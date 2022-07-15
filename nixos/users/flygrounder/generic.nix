@@ -15,6 +15,7 @@ let dotfiles = ../../../dotfiles;
     packages = with pkgs; [
       (haskell.packages.ghc922.ghcWithPackages (p: [p.xmonad p.xmonad-contrib]))
       acpi
+      bat
       betterlockscreen
       binutils
       bpytop
@@ -22,6 +23,8 @@ let dotfiles = ../../../dotfiles;
       cmatrix
       dconf
       direnv
+      exa
+      fd
       feh
       ffmpeg
       firefox
@@ -184,6 +187,10 @@ let dotfiles = ../../../dotfiles;
         rb = "sudo nixos-rebuild --flake /etc/nixos switch";
         lf = "~/.local/share/lf-ueberzug/lf-ueberzug .";
         vim = "nvim";
+        ls = "exa";
+        cat = "bat";
+        find = "fd";
+        grep = "rg";
       };      
       functions = {
         fish_greeting = "";
