@@ -1,0 +1,10 @@
+# My dotfiles
+
+[[./Screenshot.png]]
+
+|                   |            |
+|-------------------+------------|
+| OS                | NixOS      |
+| Window manager    | XMonad     |
+| Terminal emulator | Kitty      |
+| Text editor       | Doom Emacs |

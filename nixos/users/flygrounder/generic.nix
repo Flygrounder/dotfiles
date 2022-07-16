@@ -38,6 +38,7 @@ let dotfiles = ../../../dotfiles;
       gopls
       graphicsmagick
       haskell-language-server
+      imagemagick
       libreoffice
       neofetch
       nerdfonts
