@@ -21,6 +21,7 @@ let dotfiles = ../../../dotfiles;
       bpytop
       clang-tools
       cmatrix
+      colmena
       dconf
       direnv
       exa
@@ -44,6 +45,7 @@ let dotfiles = ../../../dotfiles;
       nodePackages.typescript-language-server
       nodejs
       pandoc
+      pavucontrol
       pcmanfm
       python3
       ripgrep
