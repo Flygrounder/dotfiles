@@ -10,3 +10,4 @@
 (use-package! lsp-tailwindcss
   :init
   (setq lsp-tailwindcss-add-on-mode t))
+(setq lsp-html-format-end-with-newline t)
