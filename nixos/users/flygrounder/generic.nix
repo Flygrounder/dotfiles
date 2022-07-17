@@ -15,6 +15,7 @@ let dotfiles = ../../../dotfiles;
     packages = with pkgs; [
       (haskell.packages.ghc922.ghcWithPackages (p: [p.xmonad p.xmonad-contrib]))
       acpi
+      atool
       bat
       betterlockscreen
       binutils
@@ -48,7 +49,9 @@ let dotfiles = ../../../dotfiles;
       pandoc
       pavucontrol
       pcmanfm
+      poppler_utils
       python3
+      ranger
       ripgrep
       roboto
       rust-analyzer
@@ -58,7 +61,6 @@ let dotfiles = ../../../dotfiles;
       sqlite
       tdesktop
       trayer
-      ueberzug
       unzip
       vimiv-qt
       xclip
@@ -92,11 +94,6 @@ let dotfiles = ../../../dotfiles;
       };
     };
     dataFile = {
-      lf-ueberzug = {
-        source = dotfiles + /lf-ueberzug;
-        target = "lf-ueberzug";
-        recursive = true;
-      };
       wallpaper = {
         source = dotfiles + /wallpapers/nixos.png;
         target = "wallpaper.png";
@@ -117,6 +114,19 @@ let dotfiles = ../../../dotfiles;
         source = dotfiles + /bat/config;
         target = "bat/config";
       };
+      rangerRc = {
+        source = dotfiles + /ranger/rc.conf;
+        target = "ranger/rc.conf";
+      };
+      rangerRifle = {
+        source = dotfiles + /ranger/rifle.conf;
+        target = "ranger/rifle.conf";
+      };
+      rangerScope = {
+        source = dotfiles + /ranger/scope.sh;
+        target = "ranger/scope.sh";
+        executable = true;
+      };
     };
   };
   xsession.windowManager.xmonad = {
@@ -136,9 +146,6 @@ let dotfiles = ../../../dotfiles;
       ];
       extraConfig = ''
       colorscheme nord'';
-    };
-    lf = {
-      enable = true;
     };
     zathura = {
       enable = true;
@@ -192,7 +199,6 @@ let dotfiles = ../../../dotfiles;
       enable = true;
       shellAliases = {
         rb = "sudo nixos-rebuild --flake /etc/nixos switch";
-        lf = "~/.local/share/lf-ueberzug/lf-ueberzug .";
         vim = "nvim";
         ls = "exa";
         cat = "bat";
