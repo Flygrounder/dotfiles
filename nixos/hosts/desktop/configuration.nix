@@ -4,7 +4,7 @@
   imports =
     [ 
       ./hardware-configuration.nix
-      ../modules/common.nix
+      ../generic.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
