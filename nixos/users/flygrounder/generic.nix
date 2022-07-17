@@ -113,6 +113,10 @@ let dotfiles = ../../../dotfiles;
         source = dotfiles + /vimiv/vimiv.conf;
         target = "vimiv/vimiv.conf";
       };
+      bat = {
+        source = dotfiles + /bat/config;
+        target = "bat/config";
+      };
     };
   };
   xsession.windowManager.xmonad = {
