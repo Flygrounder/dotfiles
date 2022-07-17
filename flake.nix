@@ -12,39 +12,40 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-doom-emacs, ... }: 
-    {
-      nixosConfigurations = {
-        laptop = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, home-manager, nix-doom-emacs, ... }:
+    let
+      mkSystemConfig = { host, userConfigs }:
+        nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./nixos/hosts/laptop/configuration.nix
+            ./nixos/hosts/${host}/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.flygrounder = nixpkgs.lib.mkMerge [
-                nix-doom-emacs.hmModule
-                (import ./nixos/users/flygrounder/laptop.nix)
-              ];
+              home-manager.users = userConfigs;
             }
           ];
         };
-        desktop = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./nixos/hosts/desktop/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.flygrounder = nixpkgs.lib.mkMerge [
-                nix-doom-emacs.hmModule
-                (import ./nixos/users/flygrounder/desktop.nix)
-              ];
-            }
-          ];
+      flygrounderConfig = host: nixpkgs.lib.mkMerge [
+        nix-doom-emacs.hmModule
+        (import ./nixos/users/flygrounder/${host}.nix)
+      ];
+    in
+      {
+        nixosConfigurations = {
+          laptop = mkSystemConfig {
+            host = "laptop";
+            userConfigs = {
+              flygrounder = flygrounderConfig "laptop";
+            };
+          };
+          desktop = mkSystemConfig {
+            host = "desktop";
+            userConfigs = {
+              flygrounder = flygrounderConfig "desktop";
+            };
+          };
         };
       };
-    };
 }
