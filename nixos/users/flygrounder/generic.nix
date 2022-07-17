@@ -61,6 +61,7 @@ let dotfiles = ../../../dotfiles;
       sqlite
       tdesktop
       trayer
+      ueberzug
       unzip
       vimiv-qt
       xclip
