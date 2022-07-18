@@ -2,7 +2,7 @@
 with lib;
 let
   cfg = config.modules.xmonad;
-  dotfiles = ../../../dotfiles;
+  dotfiles = config.modules.config.dotfiles;
 in
 {
   options.modules.xmonad = {
@@ -29,6 +29,7 @@ in
         (haskell.packages.ghc922.ghcWithPackages (p: [p.xmonad p.xmonad-contrib]))
         feh
         scrot
+        roboto
         xclip
       ];
       pointerCursor = {

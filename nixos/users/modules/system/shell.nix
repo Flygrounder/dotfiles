@@ -2,7 +2,7 @@
 with lib;
 let
   cfg = config.modules.shell;
-  dotfiles = ../../../dotfiles;
+  dotfiles = config.modules.config.dotfiles;
 in
 {
   options.modules.shell = {

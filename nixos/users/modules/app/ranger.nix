@@ -2,7 +2,7 @@
 with lib;
 let
   cfg = config.modules.ranger;
-  dotfiles = ../../../dotfiles;
+  dotfiles = config.modules.config.dotfiles;
 in
 {
   options.modules.ranger = {

@@ -2,7 +2,6 @@
 {
   imports = [
     ./generic.nix
-    ../modules/batteryCheck.nix
   ];
 
   modules = {

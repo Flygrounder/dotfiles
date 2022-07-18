@@ -1,27 +1,15 @@
 { pkgs, config, lib, ...}:
 with lib;
 let
-  dotfiles = ../../../dotfiles;
-  modules = ../modules;
+  myLib = import ../../lib { inherit lib; };
 in
 {
-  imports = map (x: modules + x) [
-    /betterlockscreen.nix
-    /dunst.nix
-    /emacs.nix
-    /neovim.nix
-    /shell.nix
-    /kitty.nix
-    /ranger.nix
-    /vimiv.nix
-    /xmobar.nix
-    /xmonad.nix
-    /zathura.nix
-  ];
+  imports = myLib.mapModulesRec ../modules (v: v);
 
   modules = {
     betterlockscreen.enable = true;
     dunst.enable = true;
+    config.dotfiles = ../../../dotfiles;
     emacs.enable = true;
     neovim.enable = true;
     shell.enable = true;

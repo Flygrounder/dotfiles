@@ -1,8 +1,8 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 with lib;
 let
   cfg = config.modules.kitty;
-  dotfiles = ../../../dotfiles;
+  dotfiles = config.modules.config.dotfiles;
 in
 {
   options.modules.kitty = {
@@ -26,5 +26,8 @@ in
       };
       extraConfig = (builtins.readFile (dotfiles + /kitty/nord.conf));
     };
+    home.packages = with pkgs; [
+      nerdfonts
+    ];
   };
 }

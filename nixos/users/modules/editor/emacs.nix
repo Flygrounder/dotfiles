@@ -2,7 +2,7 @@
 with lib;
 let
   cfg = config.modules.emacs;
-  dotfiles = ../../../dotfiles;
+  dotfiles = config.modules.config.dotfiles;
 in
 {
   options.modules.emacs = {
@@ -18,6 +18,7 @@ in
       clang-tools
       gopls
       haskell-language-server
+      nerdfonts
       nodePackages.pyright
       nodePackages.typescript-language-server
       pandoc

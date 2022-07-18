@@ -13,6 +13,11 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      acpi
+      dunst
+      python3
+    ];
     systemd.user = {
       services = {
         batteryCheck = {
