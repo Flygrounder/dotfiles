@@ -17,7 +17,7 @@
     xserver = {
       displayManager.autoLogin = {
         enable = true;
-        user = "flygrounder";
+        user = config.modules.config.username;
       };
       libinput = {
         enable = true;
@@ -49,4 +49,9 @@
   };
 
   networking.hostName = "laptop";
+
+  modules = {
+    batteryCheck.enable = true;
+    xmobar.template =   " <fn=1>  </fn> %UnsafeXMonadLog% }{ <fn=2></fn> %kbd%    %brightness%    %battery%    %volume%    <fn=2></fn> %date%    %trayerpad%";
+  };
 }

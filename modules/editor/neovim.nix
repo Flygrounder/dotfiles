@@ -13,18 +13,20 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.sessionVariables = {
-      EDITOR = "nvim";
-    };
+    modules.config.user = {
+      home.sessionVariables = {
+        EDITOR = "nvim";
+      };
 
-    programs.neovim = {
-      enable = true;
-      plugins = with pkgs.vimPlugins; [
-        nord-vim
-        vim-airline
-      ];
-      extraConfig = ''
+      programs.neovim = {
+        enable = true;
+        plugins = with pkgs.vimPlugins; [
+          nord-vim
+          vim-airline
+        ];
+        extraConfig = ''
       colorscheme nord'';
+      };
     };
   };
 }

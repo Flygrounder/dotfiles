@@ -12,40 +12,22 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-doom-emacs, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, nix-doom-emacs, ... }:
     let
-      mkSystemConfig = { host, userConfigs }:
+      mkSystemConfig = host:
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./nixos/hosts/${host}/configuration.nix
+            ./hosts/${host}
             home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users = userConfigs;
-            }
           ];
+          specialArgs = { inherit inputs; };
         };
-      flygrounderConfig = host: nixpkgs.lib.mkMerge [
-        nix-doom-emacs.hmModule
-        (import ./nixos/users/flygrounder/${host}.nix)
-      ];
     in
       {
         nixosConfigurations = {
-          laptop = mkSystemConfig {
-            host = "laptop";
-            userConfigs = {
-              flygrounder = flygrounderConfig "laptop";
-            };
-          };
-          desktop = mkSystemConfig {
-            host = "desktop";
-            userConfigs = {
-              flygrounder = flygrounderConfig "desktop";
-            };
-          };
+          laptop = mkSystemConfig "laptop";
+          desktop = mkSystemConfig "desktop";
         };
       };
 }

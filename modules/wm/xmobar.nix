@@ -18,18 +18,19 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      acpi
-      font-awesome_5
-      nerdfonts
-      roboto
-      trayer
-      xdotool
-    ];
+    modules.config.user = {
+      home.packages = with pkgs; [
+        acpi
+        font-awesome_5
+        nerdfonts
+        roboto
+        trayer
+        xdotool
+      ];
 
-    programs.xmobar = {
-      enable = true;
-      extraConfig = ''
+      programs.xmobar = {
+        enable = true;
+        extraConfig = ''
 Config
   { font        = "xft:Roboto-12:bold"
   , additionalFonts = [
@@ -61,6 +62,7 @@ Config
   , alignSep    = "}{"
   , template    = "${cfg.template}"
                     }'';
+      };
     };
   };
 }
