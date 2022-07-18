@@ -28,7 +28,7 @@ in
 
             Service = {
               Type = "simple";
-              ExecStart = "/home/flygrounder/.local/share/scripts/battery.py alert";
+              ExecStart = "/home/${config.modules.config.username}/.local/share/scripts/battery.py alert";
               Environment = "PATH=${pkgs.python3}/bin:${pkgs.dunst}/bin:${pkgs.acpi}/bin";
             };
           };

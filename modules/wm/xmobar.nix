@@ -28,7 +28,11 @@ in
         xdotool
       ];
 
-      programs.xmobar = {
+      programs.xmobar =
+        let
+          username = config.modules.config.username;
+        in
+        {
         enable = true;
         extraConfig = ''
 Config
@@ -53,10 +57,10 @@ Config
        ,Run Date "%H:%M %d.%m.%Y" "date" 10
        ,Run Kbd [("us", "US"), ("ru", "RU")]
        ,Run Volume "default" "Master" ["-t", "<volume>%"] 10
-       ,Run Com "/home/flygrounder/.local/share/scripts/volume.py" [] "volume" 10
-       ,Run Com "/home/flygrounder/.local/share/scripts/battery.py" [ "format" ] "battery" 300
-       ,Run Com "/home/flygrounder/.local/share/scripts/brightness.py" [] "brightness" 10
-       ,Run Com "/home/flygrounder/.local/share/scripts/trayer-padding-icon.sh" [] "trayerpad" 10
+       ,Run Com "/home/${username}/.local/share/scripts/volume.py" [] "volume" 10
+       ,Run Com "/home/${username}/.local/share/scripts/battery.py" [ "format" ] "battery" 300
+       ,Run Com "/home/${username}/.local/share/scripts/brightness.py" [] "brightness" 10
+       ,Run Com "/home/${username}/.local/share/scripts/trayer-padding-icon.sh" [] "trayerpad" 10
       ]
   , sepChar     = "%"
   , alignSep    = "}{"
