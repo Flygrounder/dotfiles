@@ -27,7 +27,7 @@ in
         fd
         neofetch
         ripgrep
-        tre-command
+        tree
         unzip
       ];
 
@@ -44,7 +44,6 @@ in
           };
           functions = {
             fish_greeting = "";
-            tre = "command tre $argv -e; and source /tmp/tre_aliases_$USER ^/dev/null";
           };
           interactiveShellInit = ''fish_vi_key_bindings
 direnv hook fish | source

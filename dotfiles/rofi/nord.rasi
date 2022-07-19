@@ -44,7 +44,7 @@ configuration {
 	nord15: #b48ead;
 
     foreground:  @nord9;
-    backlight:   #ccffeedd;
+    backlight:   #ccffee;
     background-color:  transparent;
 
     highlight:     underline bold #eceff4;
@@ -103,7 +103,7 @@ listview {
     border-radius: 0px 0px 6px 6px;
     border-color: @nord10;
     border: 0px 1px 1px 1px;
-    background-color: rgba(46,52,64,0.9);
+    background-color: rgba(46,52,64,1);
     dynamic: false;
 }
 
