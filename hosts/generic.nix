@@ -33,6 +33,7 @@ in
     dunst.enable = true;
     config.dotfiles = ../dotfiles;
     emacs.enable = true;
+    firefox.enable = true;
     neovim.enable = true;
     shell.enable = true;
     kitty.enable = true;
@@ -49,7 +50,6 @@ in
           brave
           colmena
           dconf
-          firefox
           gcc
           gimp
           gnumake
