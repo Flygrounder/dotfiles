@@ -50,9 +50,9 @@ myPP =
 
 wrapWithColor color text = "<fc=" ++ color ++ ">" ++ text ++ "</fc>"
 
-myWorkspaces = ["dev", "www", "fs", "doc", "chat", "vbox"]
+myWorkspaces = ["dev", "www", "fs", "doc", "chat", "vbox", "games"]
 
-workspaceIcons = ["\xf121", "\xe007", "\xf07b", "\xf15b", "\xf086", "\xf108"]
+workspaceIcons = ["\xf121", "\xe007", "\xf07b", "\xf15b", "\xf086", "\xf108", "\xf1b6"]
 
 workspaceIndex w = fromMaybe 0 $ elemIndex w myWorkspaces
 
@@ -62,6 +62,7 @@ getIcon w =
       clickableIcon = "<action=`xdotool key super+" ++ show ((workspaceIndex w) + 1) ++ "`>" ++ icon ++ "</action>"
    in case w of
         "www" -> wrap " <fn=3>" "</fn> " clickableIcon
+        "games" -> wrap " <fn=3>" "</fn> " clickableIcon
         _ -> wrap " <fn=2>" "</fn> " clickableIcon
 
 myManageHook =
@@ -76,7 +77,9 @@ myManageHook =
       (className =? "Gimp") --> shiftFocus "doc",
       (className =? "Soffice") --> shiftFocus "doc",
       (className =? "TelegramDesktop") --> shiftFocus "chat",
-      (className =? "VirtualBox Manager") --> shiftFocus "vbox"
+      (className =? "discord") --> shiftFocus "chat",
+      (className =? "VirtualBox Manager") --> shiftFocus "vbox",
+      (className =? "Steam") --> shiftFocus "games"
     ]
   where
     shiftFocus ws = doShift ws <+> (doF $ greedyView ws)

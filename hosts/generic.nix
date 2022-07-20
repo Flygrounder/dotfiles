@@ -29,14 +29,19 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
+  hardware.xpadneo.enable = true;
+
   modules = {
     betterlockscreen.enable = true;
+    bluetooth.enable = true;
+    discord.enable = true;
     dunst.enable = true;
     config.dotfiles = ../dotfiles;
     emacs.enable = true;
     firefox.enable = true;
     neovim.enable = true;
     shell.enable = true;
+    steam.enable = true;
     kitty.enable = true;
     ranger.enable = true;
     vimiv.enable = true;
