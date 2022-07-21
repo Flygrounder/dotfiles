@@ -65,6 +65,7 @@ in
           nodejs
           pavucontrol
           pcmanfm
+          pokerth
           python3
           rustup
           sqlite
