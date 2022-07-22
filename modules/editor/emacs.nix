@@ -22,6 +22,7 @@ in
       };
       home.packages = with pkgs;
           [
+            biber
             clang-tools
             gopls
             haskell-language-server
@@ -31,6 +32,13 @@ in
             pandoc
             rust-analyzer
             shellcheck
+            texlab
+            (texlive.combine {
+              inherit (texlive)
+                scheme-medium
+                collection-langcyrillic
+                hyphenat;
+            })
           ];
     };
   };
