@@ -1,6 +1,7 @@
 {
   description = "flygrounder's system config";
   inputs = {
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
     home-manager = {
       url = "github:nix-community/home-manager/release-22.05";
@@ -12,12 +13,19 @@
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, nix-doom-emacs, ... }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, home-manager, nix-doom-emacs, ... }:
     let
+      unstableOverlay = self: super: {
+        unstable = nixpkgs-unstable.legacyPackages.${self.system};
+      };
+      unstableOverlayModule = { config, pkgs, ... }: {
+        nixpkgs.overlays = [ unstableOverlay ];
+      };
       mkSystemConfig = host:
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            unstableOverlayModule
             ./hosts/${host}
             home-manager.nixosModules.home-manager
           ];

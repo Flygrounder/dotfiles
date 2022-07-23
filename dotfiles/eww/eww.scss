@@ -1,0 +1,52 @@
+window {
+    background-color: rgba(0, 0, 0, 0);
+    color: #ECEFF4;
+    font-family: 'Roboto';
+}
+
+.time__clock {
+    font-size: 5rem;
+}
+
+.time__date {
+    font-size: 3rem;
+}
+
+.monitor__metric {
+    min-width: 3rem;
+    font-size: 1.25rem;
+}
+
+.monitor__value {
+    min-width: 3rem;
+    font-size: 1.25rem;
+}
+
+.monitor__progress {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.monitor__progress > trough {
+    min-width: 20rem;
+    background-color: rgba(0,0,0,0);
+}
+
+.monitor__progress > trough > progress {
+    min-height: 1rem;
+    background-color: #ECEFF4;
+    border-radius: 0;
+}
+
+.monitor__progress-line {
+    margin-bottom: 0.5rem;
+}
+
+.monitor {
+    margin-top: 7rem;
+}
+
+.quote {
+    margin-top: 7rem;
+    font-size: 1.5rem;
+}

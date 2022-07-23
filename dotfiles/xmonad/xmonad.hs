@@ -123,6 +123,7 @@ myStartupHook = do
   spawnOnce "trayer --edge top --align right --height 30 --transparent true --alpha 0 --widthtype request --tint 0x3B4252"
   spawnOnce "xsetroot -cursor_name left_ptr"
   spawnOnce "betterlockscreen -u ~/.local/share/wallpaper.png"
+  spawnOnce "eww open panel"
 
 myLayoutHook = windowNavigation $ avoidStruts (toggleLayouts myFull myTall)
   where

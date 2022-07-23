@@ -1,0 +1,57 @@
+(defwindow panel
+    :stacking "fg"
+    :geometry (geometry :x "-100px"
+                        :width "25%"
+                        :height "50%"
+                        :anchor "right center")
+    (box
+     :orientation "vertical"
+     :space-evenly false
+        (time)
+        (monitor)
+        (quote)))
+
+(defvar clock "9:00")
+(defvar date "23.07.2022")
+
+(defpoll clock :interval "1s"
+         :initial "0:00"
+         `date +%H:%M`)
+
+(defpoll date :interval "1s"
+         :initial "01.01.1970"
+         `date +%d.%m.%Y`)
+
+(defwidget time []
+  (box :orientation "v"
+       :halign "center"
+       :space-evenly false
+       (label :class "time__clock" :text clock)
+       (label :class "time__date" :text date)))
+
+(defwidget monitor []
+  (box :orientation "v"
+       :space-evenly false
+       :halign "center"
+       :class "monitor"
+       (box
+        :class "monitor__progress-line"
+        :space-evenly false
+        (label :class "monitor__metric" :text "CPU")
+        (progress :valign "center" :class "monitor__progress" :value {EWW_CPU.avg})
+        (label :class "monitor__value" :text "${round(EWW_CPU.avg, 0)}%"))
+       (box
+        :class "monitor__progress-line"
+        :space-evenly false
+        (label :class "monitor__metric" :text "RAM")
+        (progress :valign "center" :class "monitor__progress" :value {EWW_RAM.used_mem_perc})
+        (label :class "monitor__value" :text "${round(EWW_RAM.used_mem_perc, 0)}%"))
+       (box
+        :class "monitor__progress-line"
+        :space-evenly false
+        (label :class "monitor__metric" :text "/")
+        (progress :valign "center" :class "monitor__progress" :value {EWW_DISK["/"].used_perc})
+        (label :class "monitor__value" :text "${round(EWW_DISK["/"].used_perc, 0)}%"))))
+
+(defwidget quote []
+  (label :class "quote" :wrap true :text "Everything can be taken from a man but one thing: the last of the human freedoms—to choose one’s attitude in any given set of circumstances, to choose one’s own way.\\n ― Viktor E. Frankl, Man's Search for Meaning"))

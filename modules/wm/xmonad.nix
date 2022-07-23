@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ inputs, pkgs, lib, config, ... }:
 with lib;
 let
   cfg = config.modules.xmonad;
@@ -66,6 +66,12 @@ in
             recursive = true;
           };
         };
+        configFile = {
+          neofetch = {
+            source = dotfiles + /neofetch/config.conf;
+            target = "neofetch/config.conf";
+          };
+        };
       };
 
       gtk = {
@@ -86,9 +92,16 @@ in
         udiskie.enable = true;
       };
 
-      programs.rofi = {
+      programs = {
+        eww = {
+          enable = true;
+          configDir = dotfiles + /eww;
+          package = pkgs.unstable.eww;
+        };
+        rofi = {
         enable = true;
         theme = dotfiles + /rofi/nord.rasi;
+      };
       };
     };
   };
