@@ -79,7 +79,8 @@ myManageHook =
       (className =? "TelegramDesktop") --> shiftFocus "chat",
       (className =? "discord") --> shiftFocus "chat",
       (className =? "VirtualBox Manager") --> shiftFocus "vbox",
-      (className =? "Steam") --> shiftFocus "games"
+      (className =? "Steam") --> shiftFocus "games",
+      (className =? "pokerth") --> shiftFocus "games"
     ]
   where
     shiftFocus ws = doShift ws <+> (doF $ greedyView ws)

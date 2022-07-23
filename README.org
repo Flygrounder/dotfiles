@@ -6,6 +6,8 @@
 |-------------------+------------|
 | OS                | NixOS      |
 | Window manager    | XMonad     |
+| Status bar        | XMobar     |
+| Widgets           | eww        |
 | Terminal emulator | Kitty      |
 | Text editor       | Doom Emacs |
 

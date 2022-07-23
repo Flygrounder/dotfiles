@@ -38,13 +38,14 @@ def check_bat() -> BatCheckResult:
     env['LC_ALL'] = 'C'
     result = subprocess.run(['acpi', '-b'], capture_output=True, text=True, env=env)
     output = result.stdout.strip()
-
-    matches = re.findall(r"Battery \d+: (?P<status>Discharging|Charging), (?P<charge>\d+)%, (?P<left>\d\d:\d\d):\d\d", output)[-1]
+    matches = re.findall(r"Battery \d+: (?P<status>Discharging|Charging|Full), (?P<charge>\d+)%(, (?P<left>\d\d:\d\d):\d\d)?", output)[-1]
     if matches is None:
         raise IOError('Failed to get battery status')
     status = matches[0]
     charge = int(matches[1])
-    left = matches[2]
+    left = matches[3]
+    if left == '':
+        left = 'Full'
     return BatCheckResult(status=status, charge=charge, left=left)
 
 

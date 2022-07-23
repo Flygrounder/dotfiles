@@ -96,7 +96,6 @@ in
         eww = {
           enable = true;
           configDir = dotfiles + /eww;
-          package = pkgs.unstable.eww;
         };
         rofi = {
         enable = true;
