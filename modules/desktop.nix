@@ -16,9 +16,12 @@
     hardware.bluetooth.powerOnBoot = true;
     services.blueman.enable = true;
     my.services.blueman-applet.enable = true;
+    programs.amnezia-vpn.enable = true;
     my.home.packages = with pkgs; [
+      beekeeper-studio
       brave
       corefonts
+      discord
       feather
       insomnia
       jetbrains.idea-community
