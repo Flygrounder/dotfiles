@@ -25,6 +25,8 @@
       feather
       insomnia
       jetbrains.idea-community
+      kubectl
+      lens
       libreoffice-still
       mkvtoolnix-cli
       nextcloud-client
@@ -82,7 +84,7 @@
       LC_TIME = "ru_RU.UTF-8";
     };
     networking.networkmanager.enable = true;
-    hardware.pulseaudio.enable = false;
+    services.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
