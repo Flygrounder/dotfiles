@@ -145,14 +145,6 @@
             key = "[d";
           }
           {
-            action = "<cmd>Neorg index<cr>";
-            key = "<leader>ww";
-          }
-          {
-            action = "<cmd>Neorg return<cr>";
-            key = "<leader>we";
-          }
-          {
             action = "<cmd>lua vim.lsp.buf.code_action()<cr>";
             key = "<leader>a";
           }
@@ -191,21 +183,6 @@
                 typst = { __unkeyed-1 = "typstyle"; };
               };
               formatters = { biome = { command = "biome"; }; };
-            };
-          };
-          neorg = {
-            enable = true;
-            settings.load = {
-              "core.defaults" = { __empty = null; };
-              "core.export" = { __empty = null; };
-              "core.export.markdown" = { __empty = null; };
-              "core.dirman" = {
-                config = {
-                  workspaces = { org = "~/org"; };
-                  default_workspace = "org";
-                };
-              };
-              "core.concealer" = { __empty = null; };
             };
           };
           autoclose.enable = true;
