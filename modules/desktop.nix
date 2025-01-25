@@ -21,7 +21,6 @@
       beekeeper-studio
       brave
       corefonts
-      discord
       feather
       insomnia
       jetbrains.idea-community
