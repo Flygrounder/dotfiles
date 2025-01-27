@@ -9,19 +9,18 @@
       extraGroups =
         [ "networkmanager" "wheel" "docker" "video" "adbusers" "vboxusers" ];
     };
+    services.displayManager.sddm.enable = true;
+    services.desktopManager.plasma6.enable = true;
     security.sudo.wheelNeedsPassword = false;
     security.polkit.enable = true;
     services.gnome.gnome-keyring.enable = true;
     hardware.bluetooth.enable = true;
     hardware.bluetooth.powerOnBoot = true;
-    services.blueman.enable = true;
-    my.services.blueman-applet.enable = true;
     programs.amnezia-vpn.enable = true;
     my.home.packages = with pkgs; [
       beekeeper-studio
       brave
       corefonts
-      feather
       insomnia
       jetbrains.idea-community
       kubectl
@@ -37,33 +36,8 @@
       vlc
       zoom-us
     ];
-    services = { xserver.enable = true; };
     virtualisation.virtualbox.host.enable = true;
     nixpkgs.config.allowUnfree = true;
-    my.xdg.mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "application/pdf" = [ "org.pwmt.zathura.desktop" ];
-        "x-scheme-handler/http" = [ "brave.desktop" ];
-        "x-scheme-handler/https" = [ "brave.desktop" ];
-      };
-    };
-    my.programs.zathura.enable = true;
-    my.programs.kitty = {
-      enable = true;
-      settings = {
-        tab_fade = 0;
-        confirm_os_window_close = 0;
-        window_padding_width = 10;
-        tab_bar_margin_height = "5 0";
-        tab_bar_margin_width = 0;
-        tab_title_template =
-          "{fmt.bg._080808}{fmt.fg._303030}{fmt.fg.default}{fmt.bg._303030}{fmt.fg._c6c6c6} {title} {fmt.fg.default}{fmt.bg.default}{fmt.fg._303030}{fmt.fg.default}";
-        active_tab_title_template =
-          "{fmt.bg._080808}{fmt.fg._80a0ff}{fmt.fg.default}{fmt.bg._80a0ff}{fmt.fg._080808} {title} {fmt.fg.default}{fmt.bg.default}{fmt.fg._80a0ff}{fmt.fg.default}";
-        font_family = "FiraCode Nerd Font";
-      };
-    };
     networking.firewall.enable = false;
     system.stateVersion = "24.05";
     hardware.graphics.enable = true;

@@ -1,9 +1,6 @@
 { pkgs, ... }: {
   imports = [ ./hardware-configuration.nix ];
   networking.hostName = "home";
-  services.greetd.enable = true;
-  programs.regreet.enable = true;
-  services.monero.enable = true;
   my.home.packages = with pkgs; [ furmark ];
   programs.corectrl.enable = true;
   users.users.flygrounder.extraGroups = [ "corectrl" ];
@@ -12,7 +9,6 @@
     description = "Дмитрий";
     extraGroups = [ "networkmanager" ];
   };
-  services.desktopManager.plasma6.enable = true;
   home-manager.users.dmitry.home = {
     username = "dmitry";
     homeDirectory = "/home/dmitry";
@@ -23,7 +19,6 @@
   services.xserver.videoDrivers = [ "amdgpu" ];
   services.hardware.openrgb.enable = true;
   custom = {
-    hyprland.enable = true;
     desktop.enable = true;
     cli.enable = true;
     hp-printer.enable = true;

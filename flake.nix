@@ -5,7 +5,6 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,11 +18,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { nixpkgs, home-manager, nixvim, arion, catppuccin, agenix, ... }:
+  outputs = { nixpkgs, home-manager, nixvim, arion, agenix, ... }:
     let
       system = "x86_64-linux";
       extraModules = [
-        catppuccin.nixosModules.catppuccin
         home-manager.nixosModules.home-manager
         ({ lib, ... }: {
           imports = [
@@ -34,10 +32,7 @@
             ])
           ];
           home-manager = {
-            sharedModules = [
-              nixvim.homeManagerModules.nixvim
-              catppuccin.homeManagerModules.catppuccin
-            ];
+            sharedModules = [ nixvim.homeManagerModules.nixvim ];
             useGlobalPkgs = true;
             useUserPackages = true;
             users.flygrounder = {
