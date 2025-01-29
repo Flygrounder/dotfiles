@@ -4,46 +4,6 @@
     my = {
       home.packages = with pkgs; [ fastfetch bottom unzip ];
       programs = {
-        yazi = {
-          enable = true;
-          initLua = ''
-            require("bookmarks"):setup({
-            	persist = "all",
-            })
-          '';
-          keymap = {
-            manager.prepend_keymap = [
-              {
-                on = [ "m" ];
-                run = "plugin bookmarks --args=save";
-                desc = "Save current position as a bookmark";
-              }
-              {
-                on = [ "'" ];
-                run = "plugin bookmarks --args=jump";
-                desc = "Jump to a bookmark";
-              }
-              {
-                on = [ "b" "d" ];
-                run = "plugin bookmarks --args=delete";
-                desc = "Delete a bookmark";
-              }
-              {
-                on = [ "b" "D" ];
-                run = "plugin bookmarks --args=delete_all";
-                desc = "Delete all bookmarks";
-              }
-            ];
-          };
-          plugins = {
-            bookmarks = pkgs.fetchFromGitHub {
-              owner = "dedukun";
-              repo = "bookmarks.yazi";
-              rev = "20ece7e1ef3c8180f199cc311f187b662662bc87";
-              sha256 = "sha256-CpoHpYAeMuSn5Sfaq30vzTj/ukrUjtXI0zZioJLnWqw=";
-            };
-          };
-        };
         git = {
           enable = true;
           extraConfig = { credential.helper = "store"; };
@@ -59,22 +19,8 @@
         };
         fish = {
           enable = true;
-          functions = {
-            fish_greeting = "";
-            y = ''
-              set tmp (mktemp -t "yazi-cwd.XXXXXX")
-              yazi $argv --cwd-file="$tmp"
-              if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-                builtin cd -- "$cwd"
-              end
-              rm -f -- "$tmp"
-            '';
-          };
-          shellAliases = {
-            lg = "lazygit";
-            hf =
-              "git add -N flake.nix flake.lock && git update-index --assume-unchanged flake.nix flake.lock";
-          };
+          functions = { fish_greeting = ""; };
+          shellAliases = { lg = "lazygit"; };
         };
         zoxide.enable = true;
         lazygit.enable = true;
