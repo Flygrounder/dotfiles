@@ -29,6 +29,5 @@
     desktop.enable = true;
     neovim.enable = true;
     cli.enable = true;
-    hyprland.enable = true;
   };
 }

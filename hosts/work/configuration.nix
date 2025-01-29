@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ ... }: {
   imports = [ ./hardware-configuration.nix ];
   networking.hostName = "nora";
   services.printing.enable = true;

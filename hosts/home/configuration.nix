@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   imports = [ ./hardware-configuration.nix ];
   networking.hostName = "home";
-  my.home.packages = with pkgs; [ furmark ];
   programs.corectrl.enable = true;
   users.users.flygrounder.extraGroups = [ "corectrl" ];
   users.users.dmitry = {
