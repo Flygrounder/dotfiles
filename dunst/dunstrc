@@ -2,6 +2,8 @@
 frame_color = "#89b4fa"
 separator_color= frame
 highlight = "#89b4fa"
+font = "Roboto 12"
+corner_radius = 16
 
 [urgency_low]
 background = "#1e1e2e"

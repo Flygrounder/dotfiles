@@ -1,18 +1,24 @@
 {
+    "margin-top": 14,
+    "margin-left": 14,
+    "margin-right": 14,
     "layer": "top",
-    "modules-left": ["hyprland/workspaces"],
+    "modules-left": [ "custom/logo", "hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["hyprland/language", "wireplumber", "clock"],
+    "modules-right": ["hyprland/language", "wireplumber", "clock", "tray"],
     "clock": {
         "format": " {:%d.%m.%Y %H:%M}"
     },
     "hyprland/language": {
-    	"format": "  {}",
+    	"format": " {}",
     	"format-en": "EN",
     	"format-ru": "RU"
     },
     "wireplumber": {
     	"format": "{icon} {volume}%",
 	"format-icons": ["", "", ""]
+    },
+    "custom/logo": {
+	    "format": "",
     }
 }
