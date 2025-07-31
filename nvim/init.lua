@@ -35,6 +35,7 @@ require('neovim-project').setup({
 	projects = {
 		'~/Projects/*',
 		'~/.config/*',
+		'~/.local/share/dotfiles',
 	},
 	picker = {
 		type = 'telescope',
