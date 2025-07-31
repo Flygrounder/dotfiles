@@ -7,3 +7,6 @@ rm -rf ~/.config/ghostty && ln -s $PWD/ghostty ~/.config/ghostty
 mkdir -p ~/.config/fish
 rm -rf ~/.config/fish/config.fish && ln -s $PWD/fish/config.fish ~/.config/fish/config.fish
 rm -rf ~/.config/fish/themes && ln -s $PWD/fish/themes ~/.config/fish/themes
+
+rm -rf ~/.config/waybar && ln -s $PWD/waybar ~/.config/waybar
+rm -rf ~/.config/dunst && ln -s $PWD/dunst ~/.config/dunst
