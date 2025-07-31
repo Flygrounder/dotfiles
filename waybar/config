@@ -19,6 +19,9 @@
 	"format-icons": ["", "", ""]
     },
     "custom/logo": {
-	    "format": "",
+    	"format": "",
+    },
+    "tray": {
+    	"spacing": 10,
     }
 }
