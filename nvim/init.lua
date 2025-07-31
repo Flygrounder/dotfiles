@@ -3,6 +3,7 @@ vim.o.smartcase = true
 vim.o.ignorecase = true
 vim.o.number = true
 vim.o.swapfile = false
+vim.o.signcolumn = 'auto:4'
 vim.g.mapleader = ' '
 
 vim.pack.add {
@@ -18,6 +19,7 @@ vim.pack.add {
 	{ src = 'https://github.com/coffebar/neovim-project' },
 	{ src = 'https://github.com/Shatur/neovim-session-manager' },
 	{ src = 'https://github.com/stevearc/conform.nvim' },
+	{ src = 'https://github.com/lewis6991/gitsigns.nvim' }
 }
 
 require('mini.completion').setup()
@@ -44,12 +46,14 @@ require('conform').setup({
 		timeout_ms = 500,
 	},
 })
+require('gitsigns').setup({})
 
 local telescope = require('telescope.builtin')
 
 vim.keymap.set('n', '<leader>f', function() telescope.find_files({ hidden = true }) end, {})
 vim.keymap.set('n', '<leader>F', function() telescope.find_files({ hidden = true, no_ignore = true }) end, {})
 vim.keymap.set('n', '<leader>g', telescope.live_grep, {})
+vim.keymap.set('n', '<leader>b', '<CMD>Gitsigns blame<CR>', {})
 vim.keymap.set('n', '<leader>h', telescope.help_tags, {})
 vim.keymap.set('n', '<leader>d', telescope.diagnostics, {})
 vim.keymap.set('n', '<leader>i', vim.lsp.buf.format, {})
