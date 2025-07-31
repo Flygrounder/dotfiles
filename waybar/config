@@ -1,0 +1,18 @@
+{
+    "layer": "top",
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["hyprland/language", "wireplumber", "clock"],
+    "clock": {
+        "format": " {:%d.%m.%Y %H:%M}"
+    },
+    "hyprland/language": {
+    	"format": "  {}",
+    	"format-en": "EN",
+    	"format-ru": "RU"
+    },
+    "wireplumber": {
+    	"format": "{icon} {volume}%",
+	"format-icons": ["", "", ""]
+    }
+}

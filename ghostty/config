@@ -2,3 +2,4 @@ font-family = FiraCode Nerd Font
 theme = catppuccin-mocha.conf
 confirm-close-surface = false
 resize-overlay = never
+keybind = ctrl+enter=unbind
