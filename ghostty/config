@@ -3,3 +3,5 @@ theme = catppuccin-mocha.conf
 confirm-close-surface = false
 resize-overlay = never
 keybind = ctrl+enter=unbind
+window-padding-x=15
+window-padding-y=10
