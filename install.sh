@@ -1,2 +1,9 @@
 #!/bin/sh
-rm -f ~/.config/nvim && ln -s $PWD/nvim ~/.config/nvim
+rm -rf ~/.config/nvim && ln -s $PWD/nvim ~/.config/nvim
+rm -rf ~/.config/hypr && ln -s $PWD/hypr ~/.config/hypr
+rm -rf ~/.config/rofi && ln -s $PWD/rofi ~/.config/rofi
+rm -rf ~/.config/ghostty && ln -s $PWD/ghostty ~/.config/ghostty
+
+mkdir -p ~/.config/fish
+rm -rf ~/.config/fish/config.fish && ln -s $PWD/fish/config.fish ~/.config/fish/config.fish
+rm -rf ~/.config/fish/themes && ln -s $PWD/fish/themes ~/.config/fish/themes
