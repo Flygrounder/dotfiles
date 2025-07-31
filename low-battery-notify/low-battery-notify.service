@@ -1,0 +1,6 @@
+[Unit]
+Description=Low battery notify
+
+[Service]
+Type=oneshot
+ExecStart=/home/flygrounder/.local/scripts/low-battery-notify.py
