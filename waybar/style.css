@@ -30,3 +30,11 @@ window#waybar {
 	background-color: @surface0;
 	border-radius: 100%;
 }
+
+#workspaces button:hover {   
+    border-color: transparent;
+    box-shadow: none;  
+    text-shadow: none;  
+    background: none;  
+    transition: none;  
+}  
