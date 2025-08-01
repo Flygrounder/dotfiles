@@ -7,4 +7,6 @@ if status is-interactive
   zoxide init fish | source
 
   alias lg=lazygit
+  alias lc=lazydocker
+  alias lq=lazysql
 end
