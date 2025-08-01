@@ -5,10 +5,4 @@ if status is-interactive
 
   starship init fish | source
   zoxide init fish | source
-
-  alias g=lazygit
-  alias d=lazydocker
-  alias s=lazysql
-  alias p=posting
-  alias y=yazi
 end
