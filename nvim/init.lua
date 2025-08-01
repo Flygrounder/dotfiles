@@ -16,8 +16,6 @@ vim.pack.add {
 	{ src = 'https://github.com/nvim-telescope/telescope.nvim' },
 	{ src = 'https://github.com/nvim-tree/nvim-web-devicons' },
 	{ src = 'https://github.com/nvim-lualine/lualine.nvim' },
-	{ src = 'https://github.com/coffebar/neovim-project' },
-	{ src = 'https://github.com/Shatur/neovim-session-manager' },
 	{ src = 'https://github.com/stevearc/conform.nvim' },
 	{ src = 'https://github.com/lewis6991/gitsigns.nvim' },
 	{ src = 'https://github.com/ThePrimeagen/harpoon',                   version = 'harpoon2' },
@@ -59,16 +57,6 @@ require('mason').setup()
 require('oil').setup()
 require('nvim-web-devicons').setup()
 require('lualine').setup()
-require('neovim-project').setup({
-	projects = {
-		'~/Projects/*',
-		'~/.config/*',
-		'~/.local/share/dotfiles',
-	},
-	picker = {
-		type = 'telescope',
-	}
-})
 require('conform').setup({
 	format_on_save = {
 		lsp_format = "fallback",
