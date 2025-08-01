@@ -23,5 +23,8 @@
     },
     "tray": {
     	"spacing": 10,
-    }
+    },
+    "hyprland/window": {
+    	"max-length": 50,
+    },
 }
