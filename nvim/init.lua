@@ -85,7 +85,6 @@ vim.keymap.set('n', '<leader>w', telescope.lsp_workspace_symbols, {})
 vim.keymap.set('n', '<leader>i', vim.lsp.buf.format, {})
 vim.keymap.set('n', '<leader>o', '<CMD>Oil<CR>', {})
 vim.keymap.set('n', '<leader>m', '<CMD>Mason<CR>', {})
-vim.keymap.set('n', '<leader>p', '<CMD>NeovimProjectHistory<CR>', {})
 vim.keymap.set('n', 'gd', telescope.lsp_definitions, {})
 vim.keymap.set('n', 'gD', telescope.lsp_references, {})
 
