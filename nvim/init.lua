@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
 	end,
 })
 
-vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<leader>k", function() harpoon:list():add() end)
 vim.keymap.set("n", "<leader>j", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
 vim.keymap.set("n", "<M-q>", function() harpoon:list():select(1) end)
