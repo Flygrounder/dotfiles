@@ -10,4 +10,5 @@ if status is-interactive
   alias d=lazydocker
   alias s=lazysql
   alias p=posting
+  alias y=yazi
 end
