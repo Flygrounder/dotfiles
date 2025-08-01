@@ -31,6 +31,10 @@ window#waybar {
 	border-radius: 100%;
 }
 
+#workspaces button.active:hover {
+	background-color: @surface0;
+}
+
 #workspaces button:hover {   
     border-color: transparent;
     box-shadow: none;  
