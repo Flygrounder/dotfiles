@@ -48,12 +48,19 @@ require('conform').setup({
 	},
 })
 require('gitsigns').setup({})
+require('telescope').setup {
+	defaults = {
+		file_ignore_patterns = { '^.git/' }
+	}
+}
 
 local telescope = require('telescope.builtin')
 
 vim.keymap.set('n', '<leader>f', function() telescope.find_files({ hidden = true }) end, {})
 vim.keymap.set('n', '<leader>F', function() telescope.find_files({ hidden = true, no_ignore = true }) end, {})
-vim.keymap.set('n', '<leader>g', telescope.live_grep, {})
+vim.keymap.set('n', '<leader>g', function() telescope.live_grep({ additional_args = { '--hidden' } }) end, {})
+vim.keymap.set('n', '<leader>G', function() telescope.live_grep({ additional_args = { '--hidden', '--no-ignore' } }) end,
+	{})
 vim.keymap.set('n', '<leader>b', '<CMD>Gitsigns blame<CR>', {})
 vim.keymap.set('n', '<leader>h', telescope.help_tags, {})
 vim.keymap.set('n', '<leader>d', telescope.diagnostics, {})
