@@ -10,3 +10,4 @@ rm -rf ~/.config/fish/themes && ln -s $PWD/fish/themes ~/.config/fish/themes
 
 rm -rf ~/.config/waybar && ln -s $PWD/waybar ~/.config/waybar
 rm -rf ~/.config/dunst && ln -s $PWD/dunst ~/.config/dunst
+rm -rf ~/.config/yazi && ln -s $PWD/yazi ~/.config/yazi
