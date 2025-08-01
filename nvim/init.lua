@@ -66,7 +66,7 @@ require('conform').setup({
 require('gitsigns').setup({})
 require('telescope').setup {
 	defaults = {
-		file_ignore_patterns = { '^.git/' }
+		file_ignore_patterns = { '/.git/' }
 	}
 }
 require('telescope').load_extension('ui-select')
@@ -88,6 +88,6 @@ vim.keymap.set('n', '<leader>m', '<CMD>Mason<CR>', {})
 vim.keymap.set('n', 'gd', telescope.lsp_definitions, {})
 vim.keymap.set('n', 'gD', telescope.lsp_references, {})
 
-vim.lsp.enable({ 'gopls', 'pyright', 'lua_ls' })
+vim.lsp.enable({ 'gopls', 'pyright', 'lua_ls', 'yamlls' })
 vim.cmd.colorscheme('catppuccin')
 vim.diagnostic.config({ virtual_text = true })
