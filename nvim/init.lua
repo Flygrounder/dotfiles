@@ -7,8 +7,8 @@ vim.o.signcolumn = 'auto:4'
 vim.g.mapleader = ' '
 
 vim.pack.add {
+	{ src = 'https://github.com/echasnovski/mini.nvim' },
 	{ src = 'https://github.com/neovim/nvim-lspconfig' },
-	{ src = 'https://github.com/echasnovski/mini.deps' },
 	{ src = 'https://github.com/catppuccin/nvim' },
 	{ src = 'https://github.com/mason-org/mason.nvim' },
 	{ src = 'https://github.com/stevearc/oil.nvim' },
