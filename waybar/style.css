@@ -3,7 +3,7 @@
 * {
 	color: @text;
 	font-size: 18px;
-	font-family: Roboto, "Font Awesome 6 Free Solid";
+	font-family: Roboto, "Font Awesome 7 Free Solid", "Font Awesome 6 Free Solid";
 }
 
 #custom-logo {
