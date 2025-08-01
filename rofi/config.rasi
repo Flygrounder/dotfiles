@@ -27,7 +27,7 @@
   normal-foreground:           @foreground;
   alternate-urgent-foreground: @red;
   alternate-active-foreground: @blue;
-
+  font: "FiraCode Nerd Font 12";
 }
 element {
     padding: 1px ;
