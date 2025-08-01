@@ -6,7 +6,8 @@ if status is-interactive
   starship init fish | source
   zoxide init fish | source
 
-  alias lg=lazygit
-  alias lc=lazydocker
-  alias lq=lazysql
+  alias g=lazygit
+  alias d=lazydocker
+  alias s=lazysql
+  alias p=posting
 end
