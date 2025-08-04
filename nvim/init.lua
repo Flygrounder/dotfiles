@@ -31,15 +31,6 @@ harpoon:setup({
 	}
 })
 
-local config_group = vim.api.nvim_create_augroup("SessionGroup", {})
-vim.api.nvim_create_autocmd({ "User" }, {
-	pattern = "SessionLoadPost",
-	group = config_group,
-	callback = function()
-		require("harpoon")
-	end,
-})
-
 vim.keymap.set("n", "<leader>k", function() harpoon:list():add() end)
 vim.keymap.set("n", "<leader>j", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
