@@ -57,7 +57,7 @@ require('conform').setup({
 require('gitsigns').setup({})
 require('telescope').setup {
 	defaults = {
-		file_ignore_patterns = { '/.git/' }
+		file_ignore_patterns = { '/.git/', '^.git/' }
 	}
 }
 require('telescope').load_extension('ui-select')
