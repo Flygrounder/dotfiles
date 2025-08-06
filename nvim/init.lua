@@ -79,6 +79,6 @@ vim.keymap.set('n', '<leader>m', '<CMD>Mason<CR>', {})
 vim.keymap.set('n', 'gd', telescope.lsp_definitions, {})
 vim.keymap.set('n', 'gD', telescope.lsp_references, {})
 
-vim.lsp.enable({ 'gopls', 'pyright', 'lua_ls', 'yamlls' })
+vim.lsp.enable({ 'gopls', 'pyright', 'lua_ls', 'yamlls', 'jsonls' })
 vim.cmd.colorscheme('catppuccin')
 vim.diagnostic.config({ virtual_text = true })
