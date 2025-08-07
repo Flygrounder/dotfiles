@@ -16,7 +16,8 @@
     },
     "wireplumber": {
     	"format": "{icon} {volume}%",
-	"format-icons": ["", "", ""]
+	"format-icons": ["", "", ""],
+	"format-muted": "   {volume}%"
     },
     "custom/logo": {
     	"format": "",
@@ -34,5 +35,6 @@
 	    "format": "{icon} {capacity}% {time}",
 	    "format-icons": ["", "", "", "", ""],
 	    "format-time": "{H}:{m}",
+	    "format-charging": "󱐋 {capacity}% {time}"
     },
 }
