@@ -1,6 +1,7 @@
 #!/bin/sh
 rm -rf ~/.config/nvim && ln -s $PWD/nvim ~/.config/nvim
 rm -rf ~/.config/hypr && ln -s $PWD/hypr ~/.config/hypr
+touch ~/.config/hypr/local.conf
 rm -rf ~/.config/rofi && ln -s $PWD/rofi ~/.config/rofi
 rm -rf ~/.config/ghostty && ln -s $PWD/ghostty ~/.config/ghostty
 
