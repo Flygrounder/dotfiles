@@ -1,21 +1,31 @@
-#!/bin/sh
-rm -rf ~/.config/nvim && ln -s $PWD/nvim ~/.config/nvim
-rm -rf ~/.config/hypr && ln -s $PWD/hypr ~/.config/hypr
+#!/usr/bin/env bash
+
+create_link () {
+	from=$1
+	to=$2
+	rm -rf $to && ln -s $from $to
+}
+
+create_link $PWD/nvim ~/.config/nvim
+
+create_link $PWD/hypr ~/.config/hypr
 touch ~/.config/hypr/local.conf
-rm -rf ~/.config/rofi && ln -s $PWD/rofi ~/.config/rofi
-rm -rf ~/.config/ghostty && ln -s $PWD/ghostty ~/.config/ghostty
+
+create_link $PWD/rofi ~/.config/rofi
+
+create_link $PWD/ghostty ~/.config/ghostty
 
 mkdir -p ~/.config/fish
-rm -rf ~/.config/fish/config.fish && ln -s $PWD/fish/config.fish ~/.config/fish/config.fish
-rm -rf ~/.config/fish/themes && ln -s $PWD/fish/themes ~/.config/fish/themes
+create_link $PWD/fish/config.fish ~/.config/fish/config.fish
+create_link $PWD/fish/themes ~/.config/fish/themes
 
-rm -rf ~/.config/waybar && ln -s $PWD/waybar ~/.config/waybar
-rm -rf ~/.config/dunst && ln -s $PWD/dunst ~/.config/dunst
-rm -rf ~/.config/yazi && ln -s $PWD/yazi ~/.config/yazi
+create_link $PWD/waybar ~/.config/waybar
 
-mkdir -p ~/.local/bin
+create_link $PWD/dunst ~/.config/dunst
+
+mkdir -p ~/.local/scripts
+create_link $PWD/low-battery-notify/low-battery-notify.py ~/.local/scripts/low-battery-notify.py
 mkdir -p ~/.config/systemd/user.control
-rm -rf ~/.local/bin/low-battery-notify.py && ln -s $PWD/low-battery-notify/low-battery-notify.py ~/.local/bin/low-battery-notify.py
-rm -rf ~/.config/systemd/user.control/low-battery-notify.service && ln -s $PWD/low-battery-notify/low-battery-notify.service ~/.config/systemd/user.control/low-battery-notify.service
-rm -rf ~/.config/systemd/user.control/low-battery-notify.timer && ln -s $PWD/low-battery-notify/low-battery-notify.timer ~/.config/systemd/user.control/low-battery-notify.timer
+create_link $PWD/low-battery-notify/low-battery-notify.service ~/.config/systemd/user.control/low-battery-notify.service
+create_link $PWD/low-battery-notify/low-battery-notify.timer ~/.config/systemd/user.control/low-battery-notify.timer
 systemctl --user enable --now low-battery-notify.timer
