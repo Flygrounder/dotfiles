@@ -3,4 +3,4 @@ Description=Low battery notify
 
 [Service]
 Type=oneshot
-ExecStart=/home/flygrounder/.local/bin/low-battery-notify.py
+ExecStart=/home/flygrounder/.local/scripts/low-battery-notify.py
