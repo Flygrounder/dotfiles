@@ -50,8 +50,14 @@ require('nvim-web-devicons').setup()
 require('lualine').setup()
 require('conform').setup({
 	format_on_save = {
-		lsp_format = "fallback",
+		lsp_format = 'fallback',
 		timeout_ms = 500,
+	},
+	formatters_by_ft = {
+		python = {
+			'isort',
+			'autoflake',
+		},
 	},
 })
 require('gitsigns').setup({})
@@ -74,7 +80,6 @@ vim.keymap.set('n', '<leader>h', telescope.help_tags, {})
 vim.keymap.set('n', '<leader>d', telescope.diagnostics, {})
 vim.keymap.set('n', '<leader>w', telescope.lsp_workspace_symbols, {})
 vim.keymap.set('n', '<leader>u', telescope.buffers, {})
-vim.keymap.set('n', '<leader>i', vim.lsp.buf.format, {})
 vim.keymap.set('n', '<leader>o', '<CMD>Oil<CR>', {})
 vim.keymap.set('n', '<leader>m', '<CMD>Mason<CR>', {})
 vim.keymap.set('n', 'gd', telescope.lsp_definitions, {})
