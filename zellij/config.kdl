@@ -4,7 +4,6 @@ keybinds clear-defaults=true {
     }
     normal {
         bind "d" { Detach; }
-        bind "q" { Quit; }
         bind "e" { EditScrollback; SwitchToMode "locked"; }
         bind "Ctrl [" { SwitchToMode "locked"; }
     }
