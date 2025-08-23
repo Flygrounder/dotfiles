@@ -3,5 +3,15 @@ theme = catppuccin-mocha.conf
 confirm-close-surface = false
 resize-overlay = never
 keybind = ctrl+enter=unbind
+keybind = alt+1=unbind
+keybind = alt+2=unbind
+keybind = alt+3=unbind
+keybind = alt+4=unbind
+keybind = alt+5=unbind
+keybind = alt+6=unbind
+keybind = alt+7=unbind
+keybind = alt+8=unbind
+keybind = alt+9=unbind
+keybind = ctrl+shift+t=unbind
 window-padding-x=15
 window-padding-y=10
