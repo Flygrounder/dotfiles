@@ -3,13 +3,6 @@ keybinds clear-defaults=true {
         bind "Ctrl g" { SwitchToMode "normal"; }
     }
     normal {
-        bind "s" {
-            LaunchOrFocusPlugin "session-manager" {
-                floating true
-                move_to_focused_tab true
-            }
-            SwitchToMode "locked"
-        }
         bind "d" { Detach; }
         bind "q" { Quit; }
         bind "e" { EditScrollback; SwitchToMode "locked"; }
