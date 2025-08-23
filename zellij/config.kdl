@@ -4,12 +4,6 @@ keybinds clear-defaults=true {
     }
     scroll {
         bind "e" { EditScrollback; SwitchToMode "locked"; }
-        bind "f" { SwitchToMode "entersearch"; SearchInput 0; }
-    }
-    search {
-        bind "n" { Search "down"; }
-        bind "p" { Search "up"; }
-        bind "c" { SearchToggleOption "CaseSensitivity"; }
     }
     session {
         bind "d" { Detach; }
@@ -21,6 +15,21 @@ keybinds clear-defaults=true {
             SwitchToMode "locked"
         }
     }
+    tab {
+        bind "h" "Left" "Up" "k" { GoToPreviousTab; }
+        bind "l" "Right" "Down" "j" { GoToNextTab; }
+        bind "n" { NewTab; SwitchToMode "Normal"; }
+        bind "x" { CloseTab; SwitchToMode "Normal"; }
+        bind "1" { GoToTab 1; SwitchToMode "Normal"; }
+        bind "2" { GoToTab 2; SwitchToMode "Normal"; }
+        bind "3" { GoToTab 3; SwitchToMode "Normal"; }
+        bind "4" { GoToTab 4; SwitchToMode "Normal"; }
+        bind "5" { GoToTab 5; SwitchToMode "Normal"; }
+        bind "6" { GoToTab 6; SwitchToMode "Normal"; }
+        bind "7" { GoToTab 7; SwitchToMode "Normal"; }
+        bind "8" { GoToTab 8; SwitchToMode "Normal"; }
+        bind "9" { GoToTab 9; SwitchToMode "Normal"; }
+    }
     shared_among "normal" "locked" {
         bind "Alt h" { MoveFocusOrTab "left"; }
         bind "Alt j" { MoveFocus "down"; }
@@ -28,34 +37,21 @@ keybinds clear-defaults=true {
         bind "Alt l" { MoveFocusOrTab "right"; }
         bind "Alt n" { NewPane; }
     }
-    shared_except "locked" "renametab" "renamepane" {
-        bind "Ctrl g" { SwitchToMode "locked"; }
+    shared_except "locked" {
+        bind "Ctrl [" { SwitchToMode "locked"; }
         bind "Ctrl q" { Quit; }
     }
-    shared_except "locked" "entersearch" {
+    shared_except "locked" {
         bind "enter" { SwitchToMode "locked"; }
     }
-    shared_except "locked" "entersearch" "renametab" "renamepane" {
-        bind "esc" { SwitchToMode "locked"; }
-    }
-    shared_except "locked" "entersearch" "search" "renametab" "renamepane" "session" {
+    shared_except "locked" {
         bind "o" { SwitchToMode "session"; }
     }
-    shared_among "normal" "resize" "search" "move" "prompt" "tmux" {
+    shared_except "locked" {
+        bind "t" { SwitchToMode "tab"; }
+    }
+    shared_among "normal" {
         bind "s" { SwitchToMode "scroll"; }
-    }
-    shared_among "scroll" "search" {
-        bind "d" { HalfPageScrollDown; }
-        bind "h" { PageScrollUp; }
-        bind "j" { ScrollDown; }
-        bind "k" { ScrollUp; }
-        bind "l" { PageScrollDown; }
-        bind "u" { HalfPageScrollUp; }
-    }
-    entersearch {
-        bind "Ctrl c" { SwitchToMode "scroll"; }
-        bind "esc" { SwitchToMode "scroll"; }
-        bind "enter" { SwitchToMode "search"; }
     }
 }
 
