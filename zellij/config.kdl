@@ -25,11 +25,16 @@ keybinds clear-defaults=true {
         bind "l" { GoToNextTab; }
         bind "H" { MoveTab "Left"; }
         bind "L" { MoveTab "Right"; }
+        bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
     }
-    shared_except "locked" {
+    renametab {
+        bind "Ctrl [" { UndoRenameTab; SwitchToMode "Tab"; }
+        bind "enter" { SwitchToMode "Tab"; }
+    }
+    shared_except "locked" "renametab" {
         bind "Ctrl [" { SwitchToMode "locked"; }
     }
-    shared_except {
+    shared_except "renametab" {
         bind "Alt p" { NewPane; }
         bind "Alt h" { MoveFocus "left"; }
         bind "Alt j" { MoveFocus "down"; }
