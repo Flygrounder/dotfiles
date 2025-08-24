@@ -3,11 +3,33 @@ keybinds clear-defaults=true {
         bind "Ctrl g" { SwitchToMode "normal"; }
     }
     normal {
+        bind "p" { SwitchToMode "pane"; }
+        bind "t" { SwitchToMode "tab"; }
         bind "d" { Detach; }
         bind "e" { EditScrollback; SwitchToMode "locked"; }
+    }
+    pane {
+        bind "x" { CloseFocus; }
+        bind "h" { MoveFocus "left"; }
+        bind "j" { MoveFocus "down"; }
+        bind "k" { MoveFocus "up"; }
+        bind "l" { MoveFocus "right"; }
+        bind "H" "Left" { MovePane "Left"; }
+        bind "J" "Down" { MovePane "Down"; }
+        bind "K" "Up" { MovePane "Up"; }
+        bind "L" "Right" { MovePane "Right"; }
+    }
+    tab {
+        bind "x" { CloseTab; }
+        bind "h" { GoToPreviousTab; }
+        bind "l" { GoToNextTab; }
+        bind "H" { MoveTab "Left"; }
+        bind "L" { MoveTab "Right"; }
+    }
+    shared_except "locked" {
         bind "Ctrl [" { SwitchToMode "locked"; }
     }
-    shared_among "normal" "locked" {
+    shared_except {
         bind "Alt p" { NewPane; }
         bind "Alt h" { MoveFocus "left"; }
         bind "Alt j" { MoveFocus "down"; }
