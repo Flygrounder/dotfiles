@@ -18,6 +18,9 @@ create_link $PWD/fish/config.fish ~/.config/fish/config.fish
 create_link $PWD/fish/themes ~/.config/fish/themes
 
 create_link $PWD/waybar ~/.config/waybar
+if [ ! -e ~/.config/waybar/local.json ]; then
+  echo "{}" > ~/.config/waybar/local.json
+fi
 
 create_link $PWD/dunst ~/.config/dunst
 

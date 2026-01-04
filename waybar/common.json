@@ -1,0 +1,47 @@
+{
+  "margin-top": 14,
+  "margin-left": 14,
+  "margin-right": 14,
+  "layer": "top",
+  "modules-left": ["custom/logo", "hyprland/workspaces"],
+  "modules-center": ["hyprland/window"],
+  "modules-right": [
+    "hyprland/language",
+    "wireplumber",
+    "backlight",
+    "battery",
+    "clock",
+    "tray"
+  ],
+  "clock": {
+    "format": " {:%d.%m.%Y %H:%M}"
+  },
+  "backlight": {
+    "format": " {percent}%"
+  },
+  "hyprland/language": {
+    "format": " {}",
+    "format-en": "EN",
+    "format-ru": "RU"
+  },
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-icons": ["", "", ""],
+    "format-muted": "   {volume}%"
+  },
+  "custom/logo": {
+    "format": ""
+  },
+  "tray": {
+    "spacing": 10
+  },
+  "hyprland/window": {
+    "max-length": 50
+  },
+  "battery": {
+    "format": "{icon} {capacity}% {time}",
+    "format-icons": ["", "", "", "", ""],
+    "format-time": "{H}:{m}",
+    "format-charging": "󱐋 {capacity}% {time}"
+  }
+}
