@@ -9,7 +9,7 @@ create_link () {
 create_link $PWD/hypr ~/.config/hypr
 touch ~/.config/hypr/local.conf
 
-create_link $PWD/rofi ~/.config/rofi
+create_link $PWD/yay ~/.config/yay
 
 create_link $PWD/ghostty ~/.config/ghostty
 
