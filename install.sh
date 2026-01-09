@@ -30,3 +30,5 @@ mkdir -p ~/.config/systemd/user.control
 create_link $PWD/low-battery-notify/low-battery-notify.service ~/.config/systemd/user.control/low-battery-notify.service
 create_link $PWD/low-battery-notify/low-battery-notify.timer ~/.config/systemd/user.control/low-battery-notify.timer
 systemctl --user enable --now low-battery-notify.timer
+
+gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
